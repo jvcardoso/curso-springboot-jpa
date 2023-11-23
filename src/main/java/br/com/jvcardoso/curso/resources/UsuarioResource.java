@@ -30,8 +30,13 @@ public class UsuarioResource {
 	
 	@GetMapping(value = "/{id}")
 	public ResponseEntity<Usuario> localizarPorId(@PathVariable Long id) {
-		Usuario obj = usuarioService.localizarPorId(id);
-		return ResponseEntity.ok().body(obj);
+		try {
+			Usuario obj = usuarioService.localizarPorId(id);
+			return ResponseEntity.ok().body(obj);
+		} catch (Exception e) {
+			return ResponseEntity.notFound().build();
+		}
+		
 	}
 
 }
