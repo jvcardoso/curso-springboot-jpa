@@ -1,18 +1,26 @@
-# curso-springboot-jpa
+package br.com.jvcardoso.curso.entities;
+
+import java.io.Serializable;
+import java.util.Objects;
+
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
 
 
-# Criar nova Entidade:
-
-checklist:
-- [ ] Basic attributes
-Ex.:
-
+@Entity
+@Table(name = "tb_categoria")
+public class Categoria implements Serializable{
+	
+	private static final long serialVersionUID = 1L;
+	
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	private String nome;
-
-- [ ] Associations (instantiate collections)
-- [ ] Constructors
-Ex.:
+	
 	public Categoria() {		
 	}
 
@@ -21,8 +29,7 @@ Ex.:
 		this.id = id;
 		this.nome = nome;
 	}
-- [ ] Getters & Setters (collections: only get)
-Ex.:
+
 	public Long getId() {
 		return id;
 	}
@@ -38,14 +45,12 @@ Ex.:
 	public void setNome(String nome) {
 		this.nome = nome;
 	}
-- [ ] hashCode & equals
-Ex.:
+
 	@Override
 	public int hashCode() {
 		return Objects.hash(id);
 	}
-- [ ] Serializable
-Ex.:
+
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
@@ -57,11 +62,11 @@ Ex.:
 		Categoria other = (Categoria) obj;
 		return Objects.equals(id, other.id);
 	}
+	
+	
+	
+	
+	
+	
 
-- [ ] JPA ANotations
-
-# Criar novo Repositorio
-
-# Criar novo Service
-
-# Criar novo Resourse
+}
