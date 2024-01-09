@@ -6,10 +6,10 @@
 checklist:
 - [ ] Basic attributes
 Ex.:
-
+...
 	private Long id;
 	private String nome;
-
+...
 - [ ] Associations (instantiate collections)
 - [ ] Constructors
 Ex.:
