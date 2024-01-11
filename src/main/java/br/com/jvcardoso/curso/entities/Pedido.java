@@ -37,7 +37,6 @@ public class Pedido implements Serializable{
 	private Usuario cliente ;
 	
 	@OneToMany(mappedBy = "id.pedido")
-	//private Set<PedidoItem> itens = new HashSet<>();
 	private Set<PedidoItem> itens = new HashSet<>();
 	
 	public Pedido() {
