@@ -2,7 +2,9 @@ package br.com.jvcardoso.curso.entities;
 
 import java.io.Serializable;
 import java.time.Instant;
+import java.util.HashSet;
 import java.util.Objects;
+import java.util.Set;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 
@@ -13,6 +15,7 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 
 @Entity
@@ -33,6 +36,10 @@ public class Pedido implements Serializable{
 	@JoinColumn(name = "usuario_id" )
 	private Usuario cliente ;
 	
+	@OneToMany(mappedBy = "id.pedido")
+	//private Set<PedidoItem> itens = new HashSet<>();
+	private Set<PedidoItem> itens = new HashSet<>();
+	
 	public Pedido() {
 		
 	}
@@ -41,7 +48,8 @@ public class Pedido implements Serializable{
 		super();
 		this.id = id;
 		this.momento = momento;
-		this.pedidoStatus = pedidoStatus;
+		//this.pedidoStatus = pedidoStatus;
+		setPedidoStatus(pedidoStatus);
 		this.cliente = cliente;
 	}
 
@@ -67,7 +75,10 @@ public class Pedido implements Serializable{
 	}
 
 	public void setPedidoStatus(PedidoStatus pedidoStatus) {
-		this.pedidoStatus = pedidoStatus;
+		if (pedidoStatus != null) {
+			this.pedidoStatus = pedidoStatus;
+		}
+		
 	}
 
 	public Usuario getCliente() {
@@ -76,6 +87,10 @@ public class Pedido implements Serializable{
 
 	public void setCliente(Usuario cliente) {
 		this.cliente = cliente;
+	}
+	
+	public Set<PedidoItem> getItens() {
+		return itens;
 	}
 
 	@Override

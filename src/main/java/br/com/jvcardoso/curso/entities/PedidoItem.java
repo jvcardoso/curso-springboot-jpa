@@ -3,6 +3,8 @@ package br.com.jvcardoso.curso.entities;
 import java.io.Serializable;
 import java.util.Objects;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import br.com.jvcardoso.curso.entities.pk.PedidoItemPK;
 import jakarta.persistence.EmbeddedId;
 import jakarta.persistence.Entity;
@@ -15,14 +17,14 @@ public class PedidoItem implements Serializable{
 	private static final long serialVersionUID = 1L;
 	
 	@EmbeddedId
-	private PedidoItemPK id;
+	private PedidoItemPK id = new PedidoItemPK();
 	
 	private Integer quantidade;
 	private Double valor;
 	
 	
 	public PedidoItem() {
-		super();
+		
 	}
 
 
@@ -36,23 +38,23 @@ public class PedidoItem implements Serializable{
 	
 	
 
-
+	@JsonIgnore //caso nao colocar entra em looop
 	public Pedido getPedido() {
 		return id.getPedido();
 	}
 
-	public Produto getProduto() {
-		return id.getProduto();
-	}
-	
 	public void setPedido(Pedido pedido) {
 		id.setPedido(pedido);
+	}
+	
+	public Produto getProduto() {
+		return id.getProduto();
 	}
 	
 	public void setProduto(Produto produto) {
 		id.setProduto(produto);
 	}
-
+	/*
 	public PedidoItemPK getId() {
 		return id;
 	}
@@ -61,7 +63,7 @@ public class PedidoItem implements Serializable{
 	public void setId(PedidoItemPK id) {
 		this.id = id;
 	}
-
+	*/
 
 	public Integer getQuantidade() {
 		return quantidade;

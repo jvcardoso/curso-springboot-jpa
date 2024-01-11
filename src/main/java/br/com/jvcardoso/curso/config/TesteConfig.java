@@ -10,10 +10,12 @@ import org.springframework.context.annotation.Profile;
 
 import br.com.jvcardoso.curso.entities.Categoria;
 import br.com.jvcardoso.curso.entities.Pedido;
+import br.com.jvcardoso.curso.entities.PedidoItem;
 import br.com.jvcardoso.curso.entities.Produto;
 import br.com.jvcardoso.curso.entities.Usuario;
 import br.com.jvcardoso.curso.entities.enums.PedidoStatus;
 import br.com.jvcardoso.curso.repositories.CategoriaRepository;
+import br.com.jvcardoso.curso.repositories.PedidoItemRepository;
 import br.com.jvcardoso.curso.repositories.PedidoRepository;
 import br.com.jvcardoso.curso.repositories.ProdutoRepository;
 import br.com.jvcardoso.curso.repositories.UsuarioRepository;
@@ -30,6 +32,9 @@ public class TesteConfig implements CommandLineRunner {
 	
 	@Autowired
 	private CategoriaRepository categoriaRepository;
+	
+	@Autowired
+	private PedidoItemRepository pedidoItemRepository;
 	
 	@Autowired
 	private ProdutoRepository produtoRepository;
@@ -75,6 +80,13 @@ public class TesteConfig implements CommandLineRunner {
 		usuarioRepository.saveAll(Arrays.asList(u1, u2));
 		
 		pedidoRepository.saveAll(Arrays.asList(o1, o2, o3));
+		
+		PedidoItem oi1 = new PedidoItem(o1, p1, 2, p1.getPreco());
+		PedidoItem oi2 = new PedidoItem(o1, p3, 1, p3.getPreco());
+		PedidoItem oi3 = new PedidoItem(o2, p3, 2, p3.getPreco());
+		PedidoItem oi4 = new PedidoItem(o3, p5, 2, p5.getPreco());
+		
+		pedidoItemRepository.saveAll(Arrays.asList(oi1, oi2, oi3,oi4));
 		
 	}
 
