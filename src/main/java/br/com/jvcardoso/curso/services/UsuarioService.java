@@ -28,4 +28,21 @@ public class UsuarioService {
 		return usuarioRepository.save(obj);
 	}
 	
+	public void remover(Long id) {
+		usuarioRepository.deleteById(id);
+	}
+	
+	public Usuario atulizar(Long id, Usuario obj) {
+		Usuario usr = usuarioRepository.getReferenceById(id);
+		updateDados(usr, obj);
+		return usuarioRepository.save(usr);
+	}
+
+	private void updateDados(Usuario usr, Usuario obj) {
+		// TODO Auto-generated method stub
+		usr.setNome(obj.getNome());
+		usr.setTelefone(obj.getTelefone());
+		usr.setEmail(obj.getEmail());
+	}
+	
 }
