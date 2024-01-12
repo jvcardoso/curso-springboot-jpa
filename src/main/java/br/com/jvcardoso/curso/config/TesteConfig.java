@@ -22,7 +22,7 @@ import br.com.jvcardoso.curso.repositories.ProdutoRepository;
 import br.com.jvcardoso.curso.repositories.UsuarioRepository;
 
 @Configuration
-@Profile("test")
+@Profile("dev")
 public class TesteConfig implements CommandLineRunner {
 	
 	@Autowired
